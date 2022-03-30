@@ -1,14 +1,21 @@
 apiVersion: automationcontroller.ansible.com/v1beta1
 kind: AutomationController
 metadata:
-  name: auto-controller
+  labels:
+    app.kubernetes.io/component: automationcontroller
+    app.kubernetes.io/managed-by: automationcontroller-operator
+    app.kubernetes.io/name: controller-dev
+    app.kubernetes.io/operator-version: ''
+    app.kubernetes.io/part-of: controller-dev
+  name: controller-dev
+  namespace: ansible-automation-platform
 spec:
-  create_preload_data: true
+  create_preload_data: false
   route_tls_termination_mechanism: Edge
   garbage_collect_secrets: false
   loadbalancer_port: 80
   image_pull_policy: IfNotPresent
-  projects_storage_size: 10Gi
+  projects_storage_size: 8Gi
   task_privileged: false
   projects_storage_access_mode: ReadWriteMany
   projects_persistence: false
@@ -16,4 +23,4 @@ spec:
   admin_user: admin
   loadbalancer_protocol: http
   nodeport_port: 30080
-  development_mode: true        
+
