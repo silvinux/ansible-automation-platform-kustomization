@@ -34,7 +34,8 @@ spec:
   loadbalancer_protocol: http
   resource_manager:
     replicas: 1
-  route_host: automationhub-dev.lab.example.com
+  # route_host: automationhub-dev.lab.example.com
+  route_host: https://automationhub-dev.apps.cluster-fce9.sandbox1768.opentlc.com
   storage_type: S3
   worker:
     replicas: 2

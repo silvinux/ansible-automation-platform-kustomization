@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: ansible-automation-platform
 
 resources:
-- auto-hub/base/auto-controller-automationhub.yaml
+- auto-automationhub.yaml
