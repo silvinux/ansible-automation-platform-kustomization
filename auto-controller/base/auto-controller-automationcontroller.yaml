@@ -3,12 +3,17 @@ kind: AutomationController
 metadata:
   name: auto-controller
 spec:
-  admin_user: admin
   create_preload_data: true
+  route_tls_termination_mechanism: Edge
   garbage_collect_secrets: false
+  loadbalancer_port: 80
   image_pull_policy: IfNotPresent
-  ingress_type: Route
+  projects_storage_size: 10Gi
+  task_privileged: false
+  projects_storage_access_mode: ReadWriteMany
   projects_persistence: false
   replicas: 1
-  route_tls_termination_mechanism: Edge
-  task_privileged: false
+  admin_user: admin
+  loadbalancer_protocol: http
+  nodeport_port: 30080
+  development_mode: true        
