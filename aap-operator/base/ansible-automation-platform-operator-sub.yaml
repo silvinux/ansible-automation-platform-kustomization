@@ -5,7 +5,7 @@ metadata:
   labels:
     operators.coreos.com/ansible-automation-platform-operator.ansible-automation-platfor: ''
   name: ansible-automation-platform-operator
-  namespace: ansible-automation-platform
+  namespace: aap-ansible-poc
 spec:
   channel: stable-2.1
   installPlanApproval: Automatic
@@ -13,4 +13,12 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   # startingCSV: aap-operator.v2.1.1-0.1645831476
+  config:
+    resources:
+      limits:
+        memory: '0'
+        cpu: '0'
+      requests:
+        memory: '0'
+        cpu: '0'
 ...

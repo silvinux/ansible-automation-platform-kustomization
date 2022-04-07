@@ -8,14 +8,14 @@ metadata:
     app.kubernetes.io/operator-version: ''
     app.kubernetes.io/part-of: controller-dev
   name: controller-dev
-  namespace: ansible-automation-platform
+  namespace: aap-ansible-poc
 spec:
   create_preload_data: false
   route_tls_termination_mechanism: Edge
   garbage_collect_secrets: false
   loadbalancer_port: 80
   image_pull_policy: IfNotPresent
-  projects_storage_size: 8Gi
+  projects_storage_size: 5Gi
   task_privileged: false
   projects_storage_access_mode: ReadWriteMany
   projects_persistence: false
@@ -23,4 +23,53 @@ spec:
   admin_user: admin
   loadbalancer_protocol: http
   nodeport_port: 30080
-
+  # web_resource_requirements:
+  #   requests:
+  #     cpu: '0'
+  #     memory: '0'
+  #   limits:
+  #     cpu: '0'
+  #     memory: '0'
+  # task_resource_requirements:
+  #   requests:
+  #     cpu: '0'
+  #     memory: '0'
+  #   limits:
+  #     cpu: '0'
+  #     memory: '0'
+  # ee_resource_requirements:
+  #   requests:
+  #     cpu: '0'
+  #     memory: '0'
+  #   limits:
+  #     cpu: '0'
+  #     memory: '0'
+  postgres_resource_requirements:
+    requests:
+      cpu: '0'
+      memory: '0'
+    limits:
+      cpu: '0'
+      memory: '0'
+  web_resource_requirements:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+  task_resource_requirements:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  ee_resource_requirements:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+...
