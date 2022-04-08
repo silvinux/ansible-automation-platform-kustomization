@@ -9,8 +9,10 @@ spec:
   ingress_type: Route
   loadbalancer_port: 80
   file_storage_size: 20Gi
-  file_storage_storage_class: automationhub-sc-dev
   file_storage_access_mode: ReadWriteMany
+  file_storage_storage_class: automationhub-sc-dev
+  postgres_storage_class: ocs-storagecluster-cephfs
+  redis_storage_class: ocs-storagecluster-cephfs
   image_pull_policy: IfNotPresent
   # object_storage_s3_secret: s3-secret-automationhub-dev
   web:
