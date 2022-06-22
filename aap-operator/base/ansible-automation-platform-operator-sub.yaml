@@ -7,7 +7,7 @@ metadata:
   name: ansible-automation-platform-operator
   namespace: aap-ansible-poc
 spec:
-  channel: stable-2.1
+  channel: stable-2.2
   installPlanApproval: Automatic
   name: ansible-automation-platform-operator
   source: redhat-operators

@@ -1,0 +1,26 @@
+---
+items:
+- apiVersion: automationcontroller.ansible.com/v1beta1
+  kind: AutomationControllerBackup
+  metadata:
+    labels:
+      app.kubernetes.io/component: automationcontroller
+      app.kubernetes.io/managed-by: automationcontroller-operator
+      app.kubernetes.io/name: example-backup
+      app.kubernetes.io/operator-version: ""
+      app.kubernetes.io/part-of: example-backup
+    name: example-backup
+    namespace: aap-ansible-poc
+  name: example-backup
+  namespace: aap-ansible-poc
+  spec:
+    backup_pvc: example-backup-pvc
+    backup_pvc_namespace: aap-ansible-poc
+    backup_storage_class: gps
+    backup_storage_requirements: 8Gbi
+    deployment_name: controller-dev
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+...  
