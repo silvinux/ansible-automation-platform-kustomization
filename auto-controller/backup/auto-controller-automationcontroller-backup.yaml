@@ -14,13 +14,15 @@ items:
   name: example-backup
   namespace: aap-ansible-poc
   spec:
-    backup_pvc: example-backup-pvc
+    #    backup_pvc: example-backup-pvc
     backup_pvc_namespace: aap-ansible-poc
-    backup_storage_class: gps
-    backup_storage_requirements: 8Gbi
+    backup_storage_class: ocs-storagecluster-cephfs
+    backup_storage_requirements: 8Gi
     deployment_name: controller-dev
 kind: List
 metadata:
   resourceVersion: ""
   selfLink: ""
 ...  
+# Check Operator logs
+#  oc logs automation-controller-operator-controller-manager-xxx -c automation-controller-manager -f
