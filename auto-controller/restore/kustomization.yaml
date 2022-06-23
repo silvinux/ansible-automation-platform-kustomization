@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: aap-ansible-poc
 
 resources:
-- auto-controller-automationcontroller.yaml
+- auto-controller-automationcontroller-resttore.yaml
