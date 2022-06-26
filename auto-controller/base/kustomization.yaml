@@ -1,6 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+<<<<<<< HEAD
 namespace: aap-ansible-poc
+=======
+
+#namespace: ansible-automation-platform
+namespace: aap-ansible-poc
+
+>>>>>>> 032b52ad1ea531bce978af987f55ea2b08f42356
 resources:
 - auto-controller-automationcontroller.yaml
 - auto-controller-automationcontroller-backup-configmap.yaml

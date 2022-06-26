@@ -11,18 +11,30 @@ data:
     export BACKUPS_DIR="/backups"
     export DEPLOYMENT_NAME="controller-poc"
     export NAMESPACE=aap-ansible-poc
+    export STORAGE_CLASS=ocs-storagecluster-cephfs
+    export STORAGE_SIZE=8Gi
     cat <<EOF | oc apply -f -
     apiVersion: automationcontroller.ansible.com/v1beta1
     kind: AutomationControllerBackup
     metadata:
+      labels:
+        app.kubernetes.io/component: automationcontroller
+        app.kubernetes.io/managed-by: automationcontroller-operator
+        app.kubernetes.io/name: $DEPLOYMENT_NAME-backup-$(date +'%Y-%m-%d-%H%M')
+        app.kubernetes.io/operator-version: ""
+        app.kubernetes.io/part-of: $DEPLOYMENT_NAME-backup-$(date +'%Y-%m-%d-%H%M')
+        name: $DEPLOYMENT_NAME-backup-$(date +'%Y-%m-%d-%H%M')
+        namespace: $NAMESPACE
       name: $DEPLOYMENT_NAME-backup-$(date +'%Y-%m-%d-%H%M')
       namespace: $NAMESPACE
     spec:
+      #  backup_pvc: example-backup-pvc
       #  postgres_image: postgres
       #  postgres_image_version: "12"
+      backup_pvc_namespace: $NAMESPACE
+      backup_storage_class: $STORAGE_CLASS
+      backup_storage_requirements: $STORAGE_SIZE
       deployment_name: $DEPLOYMENT_NAME
-      backup_storage_class: ocs-storagecluster-cephfs
-      backup_storage_requirements: 8Gi
     EOF
     find $BACKUPS_DIR -type d -mtime +$KEEP_DAYS -name 'tower-openshift-backup-*' -exec rm -r -- '{}' \;
     oc get AutomationControllerBackup -n $NAMESPACE -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' \
