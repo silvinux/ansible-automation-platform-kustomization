@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: controller-instance-backup-configmap
+  namespace: aap-ansible-pro
+data:
+  script: |
+    #!/bin/sh
+    export KEEP_DAYS=5
+    export BACKUPS_DIR="/backups"
+    export DEPLOYMENT_NAME="controller-pro"
+    export NAMESPACE=aap-ansible-pro
+    cat <<EOF | oc apply -f -
+    apiVersion: automationcontroller.ansible.com/v1beta1
+    kind: AutomationControllerBackup
+    metadata:
+      name: $DEPLOYMENT_NAME-backup-$(date +'%Y-%m-%d-%H%M')
+      namespace: $NAMESPACE
+    spec:
+      #  postgres_image: postgres
+      #  postgres_image_version: "12"
+      deployment_name: $DEPLOYMENT_NAME
+      backup_storage_class: ocs-storagecluster-cephfs
+      backup_storage_requirements: 8Gi
+    EOF
+    find $BACKUPS_DIR -type d -mtime +$KEEP_DAYS -name 'tower-openshift-backup-*' -exec rm -r -- '{}' \;
+    oc get AutomationControllerBackup -n $NAMESPACE -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' \
+    | sed -e 's/\(^.*\) \(....-..-..\)T.*$/\1 \2/g' \
+    | awk '$2 <= "'$(date -d "$(echo $KEEP_DAYS) day ago" +'%Y-%m-%d')'" { print $1 }' \
+    | xargs --no-run-if-empty oc delete AutomationControllerBackup -n $NAMESPACE
+...    

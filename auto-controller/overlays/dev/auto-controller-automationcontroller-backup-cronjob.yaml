@@ -1,0 +1,44 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: controller-instance-backup-cron
+  namespace: aap-ansible-dev
+spec:
+  schedule: "0 0 * * *"
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 0
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: controller-instance-backup-exec
+        spec:
+          containers:
+            # https://catalog.redhat.com/software/containers/openshift4/ose-cli/5cd9ba3f5a13467289f4d51d                  
+            - image: openshift4/ose-cli
+              args:
+                - "/apps/create_AutomationControllerBackup.sh"
+              imagePullPolicy: IfNotPresent
+              name: controller-instance-backup-exec
+              volumeMounts:
+                - name: controller-backup
+                  mountPath: /backups
+                - name: controller-instance-backup-configmap
+                  readOnly: true
+                  mountPath: /apps/create_AutomationControllerBackup.sh
+                  subPath: create_AutomationControllerBackup.sh
+          serviceAccountName: automation-controller-operator-controller-manager
+          restartPolicy: "Never"
+          volumes:
+            - name: controller-instance-backup-configmap
+              configMap:
+                name: controller-instance-backup-configmap
+                items:
+                  - key: script
+                    path: create_AutomationControllerBackup.sh
+                defaultMode: 0755
+            - name: controller-backup
+              persistentVolumeClaim:
+                claimName: controller-dev-backup-claim

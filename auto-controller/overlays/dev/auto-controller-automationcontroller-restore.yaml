@@ -1,0 +1,12 @@
+---
+apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationControllerRestore
+metadata:
+  name: example-restore
+  namespace: aap-ansible-dev
+spec:
+  deployment_name: controller-dev-restore
+  backup_pvc_namespace: aap-ansible-dev
+  backup_source: Backup CR
+  backup_name: example-backup-dev
+...  

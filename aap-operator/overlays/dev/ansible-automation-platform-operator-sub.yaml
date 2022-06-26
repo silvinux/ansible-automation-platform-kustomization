@@ -1,0 +1,24 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/ansible-automation-platform-operator.ansible-automation-platfor: ''
+  name: ansible-automation-platform-operator
+  namespace: aap-ansible-dev
+spec:
+  channel: stable-2.2
+  installPlanApproval: Automatic
+  name: ansible-automation-platform-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  # startingCSV: aap-operator.v2.1.1-0.1645831476
+  config:
+    resources:
+      limits:
+        memory: '0'
+        cpu: '0'
+      requests:
+        memory: '0'
+        cpu: '0'
+...

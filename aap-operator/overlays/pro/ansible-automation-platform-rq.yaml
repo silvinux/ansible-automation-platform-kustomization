@@ -1,0 +1,13 @@
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: aap-ansible-pro-rq
+  namespace: aap-ansible-pro
+spec:
+  hard:
+    limits.cpu: '8'
+    limits.memory: 24Gi
+    requests.cpu: '6'
+    requests.memory: 12Gi
+    requests.storage: 50Gi
+...

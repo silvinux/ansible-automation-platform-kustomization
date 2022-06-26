@@ -1,0 +1,13 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    olm.providedAPIs: >-
+      AnsibleJob.v1alpha1.tower.ansible.com,AutomationController.v1beta1.automationcontroller.ansible.com,AutomationControllerBackup.v1beta1.automationcontroller.ansible.com,AutomationControllerRestore.v1beta1.automationcontroller.ansible.com,AutomationHub.v1beta1.automationhub.ansible.com,AutomationHubBackup.v1beta1.automationhub.ansible.com,AutomationHubRestore.v1beta1.automationhub.ansible.com,JobTemplate.v1alpha1.tower.ansible.com
+  name: ansible-automation-platform
+  namespace: aap-ansible-pro
+spec:
+  targetNamespaces:
+    - aap-ansible-pro
+...

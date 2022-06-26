@@ -6,19 +6,19 @@ items:
     labels:
       app.kubernetes.io/component: automationcontroller
       app.kubernetes.io/managed-by: automationcontroller-operator
-      app.kubernetes.io/name: example-backup
+      app.kubernetes.io/name: example-backup-pro
       app.kubernetes.io/operator-version: ""
-      app.kubernetes.io/part-of: example-backup
-    name: example-backup
-    namespace: aap-ansible-poc
-  name: example-backup
-  namespace: aap-ansible-poc
+      app.kubernetes.io/part-of: example-backup-pro
+    name: example-backup-pro
+    namespace: aap-ansible-pro
+  name: example-backup-pro
+  namespace: aap-ansible-pro
   spec:
     #    backup_pvc: example-backup-pvc
-    backup_pvc_namespace: aap-ansible-poc
+    backup_pvc_namespace: aap-ansible-pro
     backup_storage_class: ocs-storagecluster-cephfs
     backup_storage_requirements: 8Gi
-    deployment_name: controller-dev
+    deployment_name: controller-pro
 kind: List
 metadata:
   resourceVersion: ""

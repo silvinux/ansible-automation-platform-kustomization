@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aap-ansible-dev
+  labels:
+    operators.coreos.com/ansible-automation-platform-operator.ansible-automation-platfor: ''

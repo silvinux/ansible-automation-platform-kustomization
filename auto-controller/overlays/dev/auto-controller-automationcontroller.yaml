@@ -5,11 +5,11 @@ metadata:
   labels:
     app.kubernetes.io/component: automationcontroller
     app.kubernetes.io/managed-by: automationcontroller-operator
-    app.kubernetes.io/name: controller-poc
+    app.kubernetes.io/name: controller-dev
     app.kubernetes.io/operator-version: ''
-    app.kubernetes.io/part-of: controller-poc
-  name: controller-poc
-  namespace: aap-ansible-poc
+    app.kubernetes.io/part-of: controller-dev
+  name: controller-dev
+  namespace: aap-ansible-dev
 spec:
   create_preload_data: false
   route_tls_termination_mechanism: Edge
